@@ -6,6 +6,7 @@ const Register = () => {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [passwordConfirmation, setPasswordConfirmation] = useState('');
   const [error, setError] = useState('');
   const navigate = useNavigate();
 
@@ -16,10 +17,16 @@ const Register = () => {
         name,
         email,
         password,
+        password_confirmation: passwordConfirmation,
       });
-      navigate('/login'); // Redirect to login page
-    } catch (err) {
-      setError('Registration failed');
+      navigate('/success'); // Redirect to login page after successful registration
+    } catch (err) {if (err.response && err.response.data.errors) {
+        // Display the first validation error
+        const firstError = Object.values(err.response.data.errors)[0][0];
+        setError(firstError);
+      } else {
+        setError('Registration failed. Please try again.');
+      }
     }
   };
 
@@ -54,6 +61,17 @@ const Register = () => {
             type="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
+            className="w-full p-2 border rounded"
+            required
+          />
+        </div>
+        
+        <div className="mb-4">
+          <label className="block text-sm font-medium mb-1">Confirm Password</label>
+          <input
+            type="password"
+            value={passwordConfirmation}
+            onChange={(e) => setPasswordConfirmation(e.target.value)}
             className="w-full p-2 border rounded"
             required
           />
