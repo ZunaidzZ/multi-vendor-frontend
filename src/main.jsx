@@ -11,6 +11,9 @@ import { AuthProvider } from './context/AuthContext';
 import './index.css';
 import Register from './components/Register';
 import SuccessMessage from './components/SuccessMessage'; 
+import ProductListing from './components/ProductListing'; // Ensure this import exists
+import ProductForm from './components/ProductForm'; // Ensure this import exists
+
 
 
 ReactDOM.createRoot(document.getElementById('root')).render(
@@ -18,6 +21,9 @@ ReactDOM.createRoot(document.getElementById('root')).render(
     <Router>
       <AuthProvider>
         <Routes>
+          <Route path="/products" element={<ProductListing />} />
+          <Route path="/products/create" element={<ProductForm />} />
+          <Route path="/products/edit/:id" element={<ProductForm />} />
           <Route path="/" element={<App />} />
           <Route path="/success" element={<SuccessMessage />} />
           <Route path="/register" element={<Register />} />

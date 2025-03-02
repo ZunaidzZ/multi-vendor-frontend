@@ -10,13 +10,14 @@ const Login = ({ role }) => {
     e.preventDefault();
     
     // Handle login logic (using API or local authentication, etc.)
-    if (role === 'User') {
-      // Navigate to User dashboard
-      navigate('/dashboard');
-    } else if (role === 'Admin') {
-      // Navigate to Admin panel
-      navigate('/admin');
-    }
+    // if (role === 'User') {
+    //   // Navigate to User dashboard
+    //   navigate('/dashboard');
+    // } else if (role === 'Admin') {
+    //   // Navigate to Admin panel
+    //   navigate('/admin');
+    // }
+    navigate('/products');
   };
 
   return (
